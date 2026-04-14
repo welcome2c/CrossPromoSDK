@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Cross-promo app catalog: read-only (non-sensitive data)
+    match /cross_promo_apps/{appId} {
+      allow read: if true;
+      allow write: if false;
+    }
+    // Cross-promo SDK config: read-only
+    match /cross_promo_config/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

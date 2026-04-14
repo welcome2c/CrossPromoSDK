@@ -1,0 +1,1 @@
+# CrossPromo SDK ProGuard rules

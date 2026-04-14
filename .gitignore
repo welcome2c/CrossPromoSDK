@@ -1,0 +1,24 @@
+# Firebase service account key
+admin/service-account-key.json
+*.json
+!firestore/*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Android
+android/.gradle/
+android/build/
+android/cross-promo/build/
+android/local.properties
+
+# iOS
+ios/.build/
+ios/.swiftpm/
+
+# IDE
+.idea/
+*.xcuserdata/
+.DS_Store
