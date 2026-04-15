@@ -49,10 +49,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    // Firebase Firestore
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.firestore)
-
     // Coil (Image Loading)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)

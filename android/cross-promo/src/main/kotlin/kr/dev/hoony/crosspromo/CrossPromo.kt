@@ -28,7 +28,7 @@ object CrossPromo {
 
     private lateinit var cacheManager: CacheManager
     private lateinit var frequencyManager: FrequencyManager
-    private val firestoreService = FirestoreService()
+    private lateinit var firestoreService: FirestoreService
 
     private var apps: List<PromoApp> = emptyList()
     private var config: PromoConfig = PromoConfig()
@@ -39,11 +39,17 @@ object CrossPromo {
      *
      * @param context Application context
      * @param currentAppId The package name of the host app (e.g., "kr.dev.hoony.voda")
+     * @param firebaseProjectId The Firebase project ID for CrossPromo Firestore (default: "crosspromosdk")
      */
-    fun initialize(context: Context, currentAppId: String) {
+    fun initialize(
+        context: Context,
+        currentAppId: String,
+        firebaseProjectId: String = "crosspromosdk",
+    ) {
         this.currentAppId = currentAppId
         this.cacheManager = CacheManager(context.applicationContext)
         this.frequencyManager = FrequencyManager(context.applicationContext)
+        this.firestoreService = FirestoreService(firebaseProjectId)
         this.isInitialized = true
 
         frequencyManager.incrementAppOpenCount()
