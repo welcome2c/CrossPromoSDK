@@ -41,12 +41,16 @@ object CrossPromo {
      * @param currentAppId The package name of the host app (e.g., "kr.dev.hoony.voda")
      * @param firebaseProjectId The Firebase project ID for CrossPromo Firestore (default: "crosspromosdk")
      */
+    private var debugMode = false
+
     fun initialize(
         context: Context,
         currentAppId: String,
         firebaseProjectId: String = "crosspromosdk",
+        debug: Boolean = false,
     ) {
         this.currentAppId = currentAppId
+        this.debugMode = debug
         this.cacheManager = CacheManager(context.applicationContext)
         this.frequencyManager = FrequencyManager(context.applicationContext)
         this.firestoreService = FirestoreService(firebaseProjectId)
@@ -97,6 +101,7 @@ object CrossPromo {
      */
     fun canShow(): Boolean {
         if (!isInitialized || !isDataLoaded) return false
+        if (debugMode) return apps.isNotEmpty()
         if (!config.enabled) return false
         if (apps.isEmpty()) return false
         return frequencyManager.canShow(config.minAppOpenCount)

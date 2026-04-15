@@ -61,7 +61,7 @@ afterEvaluate {
             register<MavenPublication>("release") {
                 groupId = "kr.dev.hoony"
                 artifactId = "cross-promo"
-                version = "1.0.2"
+                version = "1.0.4"
                 from(components["release"])
             }
         }
