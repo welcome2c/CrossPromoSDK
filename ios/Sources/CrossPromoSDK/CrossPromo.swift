@@ -6,7 +6,7 @@ public final class CrossPromo: ObservableObject {
     public static let shared = CrossPromo()
 
     private var currentAppId: String = ""
-    private let firestoreService = FirestoreService()
+    private var firestoreService: FirestoreService!
     private let cacheManager = CacheManager()
     private let frequencyManager = FrequencyManager()
 
@@ -18,11 +18,14 @@ public final class CrossPromo: ObservableObject {
 
     // MARK: - Public API
 
-    /// Initialize the SDK. Call this in your App's init() after FirebaseApp.configure().
+    /// Initialize the SDK. Call this in your App's init() or on appear.
     ///
-    /// - Parameter currentAppId: The bundle identifier of the host app
-    public func initialize(currentAppId: String) {
+    /// - Parameters:
+    ///   - currentAppId: The bundle identifier of the host app
+    ///   - firebaseProjectId: The Firebase project ID for CrossPromo Firestore (default: "crosspromosdk")
+    public func initialize(currentAppId: String, firebaseProjectId: String = "crosspromosdk") {
         self.currentAppId = currentAppId
+        self.firestoreService = FirestoreService(projectId: firebaseProjectId)
         frequencyManager.incrementAppOpenCount()
         frequencyManager.resetSession()
 

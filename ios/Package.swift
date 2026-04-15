@@ -10,18 +10,9 @@ let package = Package(
             targets: ["CrossPromoSDK"]
         ),
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/firebase/firebase-ios-sdk.git",
-            from: "11.0.0"
-        ),
-    ],
     targets: [
         .target(
-            name: "CrossPromoSDK",
-            dependencies: [
-                .product(name: "FirebaseFirestore", package: "firebase-ios-sdk"),
-            ]
+            name: "CrossPromoSDK"
         ),
         .testTarget(
             name: "CrossPromoSDKTests",
